@@ -94,7 +94,7 @@ onboarding/
 ├── tests/                    # Test files
 ├── .env                      # Environment variables
 ├── requirements.txt          # Dependencies
-└── wsgi.py                  # Application entry point
+└── app.py                  # Application entry point
 ```
 
 **Note:** For demo purposes, utility functions and helper classes are defined in routes.py. In a production environment, these should be properly organized into separate modules.
