@@ -103,6 +103,7 @@ onboarding/
 ### Running the Application
 
 **Activate virtual environment:**
+
 Mac/Linux
 
 ```
@@ -120,17 +121,20 @@ flask run -p 8000 --debug
 ### API Endpoints
 #### User Management
 **GET /api/user/uuid:user_id**
+
 Retrieve a specific user's information
 ```
 curl http://localhost:5000/api/user/123e4567-e89b-12d3-a456-426614174000
 ```
   
 **GET /api/user**
+
 List all users
 ```
 curl http://localhost:5000/api/user
 ```
 **PUT /api/user/uuid:user_id**
+
 Update user information
 ```
 curl -X PUT http://localhost:5000/api/user/123e4567-e89b-12d3-a456-426614174000 \
@@ -138,6 +142,7 @@ curl -X PUT http://localhost:5000/api/user/123e4567-e89b-12d3-a456-426614174000 
      -d '{"first_name": "John", "last_name": "Doe"}'
 ```
 **POST /api/user**
+
 Create a new user
 ```
 curl -X POST http://localhost:5000/api/user \
@@ -147,6 +152,7 @@ curl -X POST http://localhost:5000/api/user \
 
 #### Onboarding Flow
 **POST /api/onboarding**
+
  Handle onboarding conversation
 ```
 curl -X POST http://localhost:5000/api/onboarding \
