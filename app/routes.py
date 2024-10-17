@@ -2,11 +2,12 @@
 from app import db
 from app.models import User
 from flask import Blueprint, request, jsonify, current_app
-import openai
+from openai import OpenAI
+
+client = OpenAI(api_key=os.environ.get('OPENAI_API_KEY'))
 import os
 
 # Load OpenAI API key
-openai.api_key = os.environ.get('OPENAI_API_KEY')
 OPENAI_MODEL_NAME = os.environ.get('OPENAI_MODEL_NAME')
 
 api = Blueprint('api', __name__)
@@ -92,15 +93,13 @@ def onboarding():
         assistant_prompt = "Onboarding complete."
 
     # Use OpenAI ChatCompletion
-    response = openai.ChatCompletion.create(
-        model=OPENAI_MODEL_NAME,  # or "gpt-4" if you have access
-        messages=[
-            {"role": "system", "content": "You are a friendly onboarding assistant."},
-            {"role": "user", "content": user_input or ""},
-            {"role": "assistant", "content": assistant_prompt}
-        ]
-    )
-    assistant_reply = response['choices'][0]['message']['content'].strip()
+    response = client.chat.completions.create(model=OPENAI_MODEL_NAME,  # or "gpt-4" if you have access
+    messages=[
+        {"role": "system", "content": "You are a friendly onboarding assistant."},
+        {"role": "user", "content": user_input or ""},
+        {"role": "assistant", "content": assistant_prompt}
+    ])
+    assistant_reply = response.choices[0].message.content.strip()
     return success_response({"response": assistant_reply, "user_id": user.uid})
 
 # UTILS
