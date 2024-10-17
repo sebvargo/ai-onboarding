@@ -3,9 +3,9 @@ from app import db
 from app.models import User
 from flask import Blueprint, request, jsonify, current_app
 from openai import OpenAI
+import os
 
 client = OpenAI(api_key=os.environ.get('OPENAI_API_KEY'))
-import os
 
 # Load OpenAI API key
 OPENAI_MODEL_NAME = os.environ.get('OPENAI_MODEL_NAME')
